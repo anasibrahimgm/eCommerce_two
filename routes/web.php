@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('products', 'ProductController')->middleware('auth')->except('show');
+Route::resource('products', 'ProductController')->only('show');
+
+Route::get('checkajax', function () {
+  return response()->json("Anas ibrahimgm");
+});
